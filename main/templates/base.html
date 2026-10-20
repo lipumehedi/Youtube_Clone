@@ -4,95 +4,350 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}MyApp{% endblock %}</title>
+    <title>{% block title %}YouTube Clone{% endblock %}</title>
 
     <style>
         * {
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
         }
 
         body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #0e0e0e;
-            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #ffffff;
+            color: #0f0f0f;
         }
 
-        /* Top Header */
-        header {
+        /* Top Navbar */
+        .navbar {
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            background: white;
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 70px;
-            background-color: #181818;
-            border-bottom: 1px solid #303030;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .nav-left,
+        .nav-right {
             display: flex;
             align-items: center;
-            padding: 0 15px;
-            z-index: 100;
+            gap: 22px;
         }
 
-        header h2 {
+        .menu-icon {
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 23px;
+            font-weight: bold;
+            color: #0f0f0f;
+            text-decoration: none;
+            letter-spacing: -1px;
+        }
+
+        .logo-icon {
+            background: #ff0000;
+            color: white;
+            padding: 3px 7px;
+            border-radius: 9px;
+            font-size: 17px;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            width: 42%;
+            max-width: 600px;
+        }
+
+        .search-box input {
+            width: 100%;
+            height: 42px;
+            padding: 0 18px;
+            border: 1px solid #c6c6c6;
+            border-radius: 25px 0 0 25px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .search-box button {
+            height: 42px;
+            width: 65px;
+            border: 1px solid #c6c6c6;
+            border-left: none;
+            border-radius: 0 25px 25px 0;
+            background: #f8f8f8;
             font-size: 20px;
-            margin: 0;
+            cursor: pointer;
         }
 
-        /* Left Sidebar */
-        aside {
+        .mic {
+            background: #f2f2f2;
+            border-radius: 50%;
+            width: 42px;
+            height: 42px;
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+        }
+
+        .create-btn {
+            background: #f2f2f2;
+            border: none;
+            border-radius: 22px;
+            padding: 11px 16px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .profile {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: #2864dc;
+            color: white;
+            display: grid;
+            place-items: center;
+            font-weight: bold;
+        }
+
+        /* Sidebar */
+        .sidebar {
             position: fixed;
-            top: 70px;
+            top: 64px;
             left: 0;
             bottom: 0;
-            width: 128px;
-            background-color: #181818;
-            border-right: 1px solid #303030;
-            padding: 10px 8px;
+            width: 220px;
+            padding: 15px 12px;
+            overflow-y: auto;
+            background: white;
         }
 
-        aside nav a {
-            display: block;
-            color: #eeeeee;
-            text-decoration: none;
-            padding: 12px 7px;
-            font-size: 12px;
-            border-radius: 4px;
+        .side-link {
+            display: flex;
+            align-items: center;
+            gap: 23px;
+            padding: 13px 12px;
             margin-bottom: 4px;
+            border-radius: 10px;
+            text-decoration: none;
+            color: #0f0f0f;
+            font-size: 14px;
         }
 
-        aside nav a:hover {
-            background-color: #303030;
+        .side-link:hover,
+        .side-link.active {
+            background: #f2f2f2;
+        }
+
+        .side-link.active {
+            font-weight: bold;
+        }
+
+        .side-icon {
+            font-size: 21px;
+            width: 22px;
+            text-align: center;
+        }
+
+        .side-divider {
+            border: none;
+            border-top: 1px solid #e5e5e5;
+            margin: 13px 0;
+        }
+
+        .sidebar h4 {
+            padding: 10px 12px;
+            font-size: 16px;
         }
 
         /* Main Content */
-        main {
-            margin-left: 128px;
-            padding: 82px 15px 20px;
-            min-height: 100vh;
+        .main-content {
+            margin-left: 220px;
+            padding: 84px 24px 30px;
         }
 
-        main h1 {
-            font-size: 22px;
-            margin: 0 0 3px;
+        /* Category Buttons */
+        .categories {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            white-space: nowrap;
+            padding-bottom: 25px;
         }
 
-        main p {
-            font-size: 12px;
-            margin-top: 0;
+        .category {
+            padding: 9px 14px;
+            border: none;
+            border-radius: 8px;
+            background: #f2f2f2;
+            color: #0f0f0f;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
         }
 
-        @media (max-width: 500px) {
-            aside {
-                width: 110px;
+        .category.active {
+            background: #0f0f0f;
+            color: white;
+        }
+
+        /* Video Grid */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 35px 18px;
+        }
+
+        .video-card {
+            cursor: pointer;
+            min-width: 0;
+        }
+
+        .thumbnail {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            border-radius: 12px;
+            background: #eeeeee;
+            display: block;
+        }
+
+        .video-info {
+            display: flex;
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .channel-avatar {
+            min-width: 38px;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            object-fit: cover;
+            background: #dddddd;
+        }
+
+        .video-details {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .video-title {
+            font-size: 16px;
+            line-height: 1.45;
+            font-weight: 600;
+            margin-bottom: 7px;
+        }
+
+        .channel-name,
+        .video-stats {
+            color: #606060;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .video-card:hover .thumbnail {
+            border-radius: 5px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1100px) {
+            .video-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
             }
 
-            main {
-                margin-left: 110px;
-                padding-left: 12px;
+            .sidebar {
+                width: 80px;
             }
 
-            main h1 {
+            .side-link {
+                flex-direction: column;
+                gap: 7px;
+                padding: 14px 2px;
+                font-size: 10px;
+            }
+
+            .side-link span:last-child {
+                text-align: center;
+            }
+
+            .sidebar h4,
+            .side-divider {
+                display: none;
+            }
+
+            .main-content {
+                margin-left: 80px;
+            }
+        }
+
+        @media (max-width: 650px) {
+            .navbar {
+                padding: 0 12px;
+                gap: 10px;
+            }
+
+            .logo {
                 font-size: 18px;
+            }
+
+            .search-box {
+                width: auto;
+                flex: 1;
+            }
+
+            .search-box input {
+                min-width: 0;
+                height: 36px;
+                padding: 0 10px;
+                font-size: 13px;
+            }
+
+            .search-box button {
+                height: 36px;
+                width: 42px;
+            }
+
+            .nav-left,
+            .nav-right {
+                gap: 10px;
+            }
+
+            .nav-right .create-btn,
+            .mic {
+                display: none;
+            }
+
+            .sidebar {
+                display: none;
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 80px 12px 20px;
+            }
+
+            .video-grid {
+                grid-template-columns: 1fr;
+                gap: 28px;
+            }
+
+            .categories {
+                padding-bottom: 20px;
             }
         }
     </style>
@@ -100,28 +355,183 @@
 
 <body>
 
-    <!-- Top Header -->
-    <header>
-        <h2>MyApp</h2>
+    <!-- Top Navbar -->
+    <header class="navbar">
+
+        <div class="nav-left">
+            <span class="menu-icon">☰</span>
+
+            <a href="/" class="logo">
+                <span class="logo-icon">▶</span>
+                <span>YouTube</span>
+            </a>
+        </div>
+
+        <form class="search-box" action="/" method="get">
+            <input type="search" name="q"
+                   placeholder="Search"
+                   aria-label="Search videos">
+            <button type="submit">⌕</button>
+        </form>
+
+        <div class="nav-right">
+            <button class="create-btn">＋ Create</button>
+            <div class="profile">M</div>
+        </div>
+
     </header>
 
     <!-- Left Sidebar -->
-    <aside>
-        <nav>
-            <a href="/">🏠 Home</a>
-            <a href="#">🔎 Explore</a>
-            <a href="#">📺 Subscriptions</a>
-            <a href="#">◉ History</a>
-            <a href="#">⚙ Settings</a>
-        </nav>
+    <aside class="sidebar">
+
+        <a href="/" class="side-link active">
+            <span class="side-icon">⌂</span>
+            <span>Home</span>
+        </a>
+
+        <a href="/shorts/" class="side-link">
+            <span class="side-icon">▣</span>
+            <span>Shorts</span>
+        </a>
+
+        <a href="#" class="side-link">
+            <span class="side-icon">▻</span>
+            <span>Subscriptions</span>
+        </a>
+
+        <hr class="side-divider">
+
+        <h4>You &nbsp; ›</h4>
+
+        <a href="#" class="side-link">
+            <span class="side-icon">◷</span>
+            <span>History</span>
+        </a>
+
+        <a href="#" class="side-link">
+            <span class="side-icon">▤</span>
+            <span>Playlists</span>
+        </a>
+
+        <a href="#" class="side-link">
+            <span class="side-icon">▶</span>
+            <span>Your videos</span>
+        </a>
+
+        <a href="#" class="side-link">
+            <span class="side-icon">⏱</span>
+            <span>Watch later</span>
+        </a>
+
+        <a href="#" class="side-link">
+            <span class="side-icon">♡</span>
+            <span>Liked videos</span>
+        </a>
+
+        <hr class="side-divider">
+
+        <h4>Explore</h4>
+
+        <a href="#" class="side-link">
+            <span class="side-icon">♬</span>
+            <span>Music</span>
+        </a>
+
+        <a href="#" class="side-link">
+            <span class="side-icon">🎮</span>
+            <span>Gaming</span>
+        </a>
+
+        <a href="#" class="side-link">
+            <span class="side-icon">📰</span>
+            <span>News</span>
+        </a>
+
     </aside>
 
     <!-- Main Content -->
-    <main>
+    <main class="main-content">
+
+        <div class="categories">
+            <button class="category active">All</button>
+            <button class="category">Music</button>
+            <button class="category">Programming</button>
+            <button class="category">Live</button>
+            <button class="category">Gaming</button>
+            <button class="category">News</button>
+            <button class="category">Podcasts</button>
+            <button class="category">Recently uploaded</button>
+        </div>
+
+        <!-- Django Child Templates Can Replace This -->
         {% block content %}
-        <h1>Welcome to My Django App</h1>
-        <p>This content starts 10% from the left and 8% from the top.</p>
+
+        <div class="video-grid">
+
+            <article class="video-card">
+                <img class="thumbnail"
+                     src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80"
+                     alt="Programming setup">
+
+                <div class="video-info">
+                    <img class="channel-avatar"
+                         src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=100&q=80"
+                         alt="Channel avatar">
+
+                    <div class="video-details">
+                        <h3 class="video-title">
+                            Learn Python Programming from Zero to Hero
+                        </h3>
+                        <p class="channel-name">Code Academy</p>
+                        <p class="video-stats">125K views · 2 days ago</p>
+                    </div>
+                </div>
+            </article>
+
+            <article class="video-card">
+                <img class="thumbnail"
+                     src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80"
+                     alt="Online learning">
+
+                <div class="video-info">
+                    <img class="channel-avatar"
+                         src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80"
+                         alt="Channel avatar">
+
+                    <div class="video-details">
+                        <h3 class="video-title">
+                            Web Development Full Course for Beginners
+                        </h3>
+                        <p class="channel-name">Web Dev Studio</p>
+                        <p class="video-stats">89K views · 1 week ago</p>
+                    </div>
+                </div>
+            </article>
+
+            <article class="video-card">
+                <img class="thumbnail"
+                     src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80"
+                     alt="Technology learning">
+
+                <div class="video-info">
+                    <img class="channel-avatar"
+                         src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80"
+                         alt="Channel avatar">
+
+                    <div class="video-details">
+                        <h3 class="video-title">
+                            Django Projects You Should Build in 2026
+                        </h3>
+                        <p class="channel-name">Python World</p>
+                        <p class="video-stats">42K views · 3 days ago</p>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+
         {% endblock %}
+
     </main>
 
 </body>
