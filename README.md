@@ -57,7 +57,6 @@ Youtube_Clone/
 └── README.md
 ```
 
-*The structure above is illustrative. Update it to match your actual project files.*
 
 ## Getting Started
 
