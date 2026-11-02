@@ -1,305 +1,131 @@
-
-{% load static %}
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>YouTube Clone</title>
-<link rel="stylesheet" href="{% static 'css/home.css' %}">
-<style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-</style>
+    <title>{% block title %}My App{% endblock %}</title>
+
+    <!-- Font Awesome Icons -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    {% block extra_css %}{% endblock %}
+
+    <style>
+        /* RESET */
+
+        
+    </style>
 </head>
 
 <body>
 
-<header class="header">
+    <!-- LEFT SIDEBAR -->
 
-    <div class="left">
-        <div class="menu" title="Menu">☰</div>
+    <aside class="sidebar">
 
-        <div class="logo">
-            <span class="play">▶</span>
-            <span>YouTube</span>
-            <small>JP</small>
-        </div>
-    </div>
+        <h3>Logo</h3>
 
-    <div class="search-area">
-        <div class="search-box">
-            <input id="searchInput" type="text"
-                   placeholder="Search">
-            <button class="search-btn"
-                    onclick="searchVideos()">⌕</button>
-        </div>
+        <a href="/">Home</a>
+        <a href="#">Trending</a>
+        <a href="#">Library</a>
 
-        
-        <button class="mic" title="Search with your voice"
-                onclick="voiceSearch()" aria-label="Search with your voice">
-            <svg width="24" height="24" viewBox="0 0 24 24"
-                fill="none" stroke="currentColor"
-                stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <rect x="9" y="2" width="6" height="12" rx="3"/>
-                <path d="M5 10a7 7 0 0 0 14 0"/>
-                <path d="M12 17v5"/>
-                <path d="M8 22h8"/>
-            </svg>
-        </button>
+    </aside>
 
-    </div>
+    <!-- RIGHT SECTION -->
 
-    <div class="right">
-        <button class="create" title="Create">＋</button>
-        
-        <button class="bell" title="Notifications"
-                aria-label="Notifications">
-            <svg width="24" height="24" viewBox="0 0 24 24"
-                fill="none" stroke="currentColor"
-                stroke-width="1.8" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/>
-                <path d="M10 21h4"/>
-            </svg>
-        </button>
+    <div class="right-section">
 
-        <div class="avatar">M</div>
-    </div>
+        <!-- TOP NAVBAR -->
 
-</header>
+        <header class="navbar">
 
-<aside class="sidebar">
+            <!-- CENTERED SEARCH FORM -->
 
-    <div class="side-item active">
-        <span class="emoji">⌂</span>
-        <span>Home</span>
-    </div>
+            <form class="search-container" action="#" method="get">
 
-    <div class="side-item">
-        <span class="emoji">▶</span>
-        <span>Shorts</span>
-    </div>
+                <div class="search-box">
 
-    <div class="side-item">
-        <span class="emoji">▣</span>
-        <span>Subscriptions</span>
-    </div>
+                    <input
+                        type="search"
+                        name="q"
+                        placeholder="Search"
+                        aria-label="Search"
+                    >
 
-    <hr>
+                    <button
+                        type="submit"
+                        class="search-button"
+                        aria-label="Submit search"
+                    >
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
 
-    <div class="side-title">You &nbsp; ›</div>
-
-    <div class="side-item">
-        <span class="emoji">◴</span>
-        <span>History</span>
-    </div>
-
-    <div class="side-item">
-        <span class="emoji">▤</span>
-        <span>Playlists</span>
-    </div>
-
-    <div class="side-item">
-        <span class="emoji">◉</span>
-        <span>Your videos</span>
-    </div>
-
-    <div class="side-item">
-        <span class="emoji">◷</span>
-        <span>Watch later</span>
-    </div>
-
-    <div class="side-item">
-        <span class="emoji">♡</span>
-        <span>Liked videos</span>
-    </div>
-
-    <hr>
-
-    <div class="side-title">Explore</div>
-
-    <div class="side-item">
-        <span class="emoji">♬</span>
-        <span>Music</span>
-    </div>
-
-    <div class="side-item">
-        <span class="emoji">🎮</span>
-        <span>Gaming</span>
-    </div>
-
-    <div class="side-item">
-        <span class="emoji">📰</span>
-        <span>News</span>
-    </div>
-
-</aside>
-
-<main>
-
-    <nav class="categories">
-        <button class="selected" onclick="filterCategory(this, 'all')">All</button>
-        <button onclick="filterCategory(this, 'music')">Music</button>
-        <button onclick="filterCategory(this, 'coding')">Coding</button>
-        <button onclick="filterCategory(this, 'gaming')">Gaming</button>
-        <button onclick="filterCategory(this, 'live')">Live</button>
-        <button onclick="filterCategory(this, 'news')">News</button>
-        <button onclick="filterCategory(this, 'travel')">Travel</button>
-        <button onclick="filterCategory(this, 'technology')">Technology</button>
-        <button onclick="filterCategory(this, 'comedy')">Comedy</button>
-    </nav>
-
-    <section class="video-grid" id="videoGrid">
-
-        <article class="video-card" data-category="coding">
-            <div class="thumbnail">
-                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80"
-                     alt="Programming workspace">
-                <span class="duration">12:45</span>
-            </div>
-            <div class="video-info">
-                <div class="channel-avatar">C</div>
-                <div class="video-text">
-                    <h3>Learn Python Programming From Zero to Hero</h3>
-                    <p>Code Academy</p>
-                    <p>125K views · 2 days ago</p>
                 </div>
-            </div>
-        </article>
 
-        <article class="video-card" data-category="travel">
-            <div class="thumbnail">
-                <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=800&q=80"
-                     alt="Beautiful streets in Japan">
-                <span class="duration">18:32</span>
-            </div>
-            <div class="video-info">
-                <div class="channel-avatar">J</div>
-                <div class="video-text">
-                    <h3>Beautiful Japan 🇯🇵 Tokyo Travel Guide</h3>
-                    <p>Japan Explorer</p>
-                    <p>82K views · 1 week ago</p>
+                <!-- MICROPHONE -->
+
+                <button
+                    type="button"
+                    class="mic-button"
+                    aria-label="Voice search"
+                    title="Voice search"
+                >
+                    <i class="fa-solid fa-microphone"></i>
+                </button>
+
+            </form>
+
+            <!-- RIGHT-ALIGNED ACTIONS -->
+
+            <div class="navbar-actions">
+
+                <button
+                    type="button"
+                    class="create-button"
+                >
+                    <i class="fa-solid fa-plus"></i>
+                    <span>Create</span>
+                </button>
+
+                <button
+                    type="button"
+                    class="notification-button"
+                    aria-label="Notifications"
+                    title="Notifications"
+                >
+                    <i class="fa-regular fa-bell"></i>
+                </button>
+
+                <div
+                    class="profile"
+                    role="button"
+                    tabindex="0"
+                    aria-label="User profile"
+                    title="User profile"
+                >
+                    M
                 </div>
+
             </div>
-        </article>
 
-        <article class="video-card" data-category="music">
-            <div class="thumbnail">
-                <img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=800&q=80"
-                     alt="Singer performing on stage">
-                <span class="duration">4:21</span>
-            </div>
-            <div class="video-info">
-                <div class="channel-avatar">M</div>
-                <div class="video-text">
-                    <h3>Best Music Mix For Your Daily Life</h3>
-                    <p>Music World</p>
-                    <p>1.2M views · 3 weeks ago</p>
-                </div>
-            </div>
-        </article>
+        </header>
 
-        <article class="video-card" data-category="gaming">
-            <div class="thumbnail">
-                <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80"
-                     alt="Gaming setup">
-                <span class="duration">25:09</span>
-            </div>
-            <div class="video-info">
-                <div class="channel-avatar">G</div>
-                <div class="video-text">
-                    <h3>Ultimate Gaming Setup and Gameplay</h3>
-                    <p>Gamer Zone</p>
-                    <p>54K views · 5 days ago</p>
-                </div>
-            </div>
-        </article>
+        <!-- DYNAMIC CONTENT AREA -->
 
-        <article class="video-card" data-category="technology">
-            <div class="thumbnail">
-                <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80"
-                     alt="Technology and teamwork">
-                <span class="duration">10:17</span>
-            </div>
-            <div class="video-info">
-                <div class="channel-avatar">T</div>
-                <div class="video-text">
-                    <h3>Latest Technology You Should Know About</h3>
-                    <p>Tech Daily</p>
-                    <p>96K views · 4 days ago</p>
-                </div>
-            </div>
-        </article>
+        <main class="content">
 
-        <article class="video-card" data-category="comedy">
-            <div class="thumbnail">
-                <img src="https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?auto=format&fit=crop&w=800&q=80"
-                     alt="Live entertainment">
-                <span class="duration">8:44</span>
-            </div>
-            <div class="video-info">
-                <div class="channel-avatar">E</div>
-                <div class="video-text">
-                    <h3>Funny Moments That Will Make You Smile</h3>
-                    <p>Entertainment Hub</p>
-                    <p>230K views · 6 days ago</p>
-                </div>
-            </div>
-        </article>
+            {% block content %}
 
-    </section>
-</main>
+            {% endblock %}
 
-<script>
-function searchVideos() {
-    const input = document.getElementById("searchInput");
-    const query = input.value.trim().toLowerCase();
+        </main>
 
-    document.querySelectorAll(".video-card").forEach(card => {
-        card.style.display =
-            card.innerText.toLowerCase().includes(query)
-            ? "" : "none";
-    });
-}
-
-document.getElementById("searchInput").addEventListener("keydown", e => {
-    if (e.key === "Enter") searchVideos();
-});
-
-function filterCategory(button, category) {
-    document.querySelectorAll(".categories button").forEach(btn => {
-        btn.classList.remove("selected");
-    });
-
-    button.classList.add("selected");
-
-    document.querySelectorAll(".video-card").forEach(card => {
-        card.style.display =
-            category === "all" || card.dataset.category === category
-            ? "" : "none";
-    });
-}
-
-function voiceSearch() {
-    const SpeechRecognition =
-        window.SpeechRecognition || window.webkitSpeechRecognition;
-
-    if (!SpeechRecognition) {
-        alert("Voice search is not supported in this browser.");
-        return;
-    }
-
-    const recognition = new SpeechRecognition();
-    recognition.lang = "ja-JP";
-    recognition.onresult = event => {
-        document.getElementById("searchInput").value =
-            event.results[0][0].transcript;
-        searchVideos();
-    };
-    recognition.start();
-}
-</script>
+    </div>
 
 </body>
 </html>
