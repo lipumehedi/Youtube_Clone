@@ -1,7 +1,425 @@
+
 {% extends "base.html" %}
-{% block title %}Home{% endblock %}
+{% load static %}
+{% block title %}Home - YouTube Clone{% endblock %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
 
 {% block content %}
-    <h1 class="display-4">Welcome to Home</h1>
-    <p>Your home content gose here.</p>
+
+<style>
+/* ================= HOME ================= */
+
+
+</style>
+
+
+
+<div class="home-container">
+
+    <!-- CATEGORY BUTTONS -->
+    <div class="category-section">
+
+        {% for tag in tag_names %}
+            <button class="category" type="button">{{ tag }}</button>
+        {% endfor %}
+
+    </div>
+
+</div>
+
+
+    <!-- ================= RECENT PLAYS ================= -->
+
+    <section class="recent-section">
+
+        <div class="section-heading">
+            <h2>Recently Played</h2>
+            <p>Your watch history</p>
+        </div>
+
+        <div class="recent-grid">
+
+            <div class="recent-card">
+                <div class="recent-thumbnail">
+                    <span class="video-duration">12:45</span>
+                </div>
+                <div class="recent-details">
+                    <div class="recent-avatar"></div>
+                    <div class="recent-text">
+                        <h3>Python Django Complete Tutorial</h3>
+                        <p>Programming Academy</p>
+                        <p>Watched 20 minutes ago</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="recent-card">
+                <div class="recent-thumbnail">
+                    <span class="video-duration">18:30</span>
+                </div>
+                <div class="recent-details">
+                    <div class="recent-avatar"></div>
+                    <div class="recent-text">
+                        <h3>Learn HTML and CSS From Zero</h3>
+                        <p>Web Development</p>
+                        <p>Watched 1 hour ago</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="recent-card">
+                <div class="recent-thumbnail">
+                    <span class="video-duration">25:10</span>
+                </div>
+                <div class="recent-details">
+                    <div class="recent-avatar"></div>
+                    <div class="recent-text">
+                        <h3>Japan Daily Life and Culture</h3>
+                        <p>Japan Channel</p>
+                        <p>Watched yesterday</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="recent-card">
+                <div class="recent-thumbnail">
+                    <span class="video-duration">9:20</span>
+                </div>
+                <div class="recent-details">
+                    <div class="recent-avatar"></div>
+                    <div class="recent-text">
+                        <h3>Python Problem Solving Practice</h3>
+                        <p>Code Academy</p>
+                        <p>Watched 2 days ago</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="recent-card">
+                <div class="recent-thumbnail">
+                    <span class="video-duration">14:05</span>
+                </div>
+                <div class="recent-details">
+                    <div class="recent-avatar"></div>
+                    <div class="recent-text">
+                        <h3>Django ORM Explained</h3>
+                        <p>Backend School</p>
+                        <p>Watched 3 days ago</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="recent-card">
+                <div class="recent-thumbnail">
+                    <span class="video-duration">8:45</span>
+                </div>
+                <div class="recent-details">
+                    <div class="recent-avatar"></div>
+                    <div class="recent-text">
+                        <h3>PostgreSQL Database Tutorial</h3>
+                        <p>Database Learning</p>
+                        <p>Watched 4 days ago</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="recent-card">
+                <div class="recent-thumbnail">
+                    <span class="video-duration">11:25</span>
+                </div>
+                <div class="recent-details">
+                    <div class="recent-avatar"></div>
+                    <div class="recent-text">
+                        <h3>Git and GitHub Complete Guide</h3>
+                        <p>Developer World</p>
+                        <p>Watched 5 days ago</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="recent-card">
+                <div class="recent-thumbnail">
+                    <span class="video-duration">16:40</span>
+                </div>
+                <div class="recent-details">
+                    <div class="recent-avatar"></div>
+                    <div class="recent-text">
+                        <h3>Build Your First Backend Project</h3>
+                        <p>Programming Hub</p>
+                        <p>Watched last week</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ================= MAIN VIDEO SECTION ================= -->
+
+    <section class="video-section">
+
+        <div class="section-heading">
+            <h2>Videos</h2>
+            <p>Recommended for you</p>
+        </div>
+
+        <div class="video-grid">
+
+            <div class="video-card">
+                <div class="video-thumbnail">
+                    <span class="video-duration">12:45</span>
+                </div>
+                <div class="video-information">
+                    <div class="channel-avatar"></div>
+                    <div class="video-details">
+                        <h3>Latest News and Entertainment from Japan</h3>
+                        <p>News Channel</p>
+                        <p>1.2M views · 1 day ago</p>
+                    </div>
+                    <button type="button" class="video-menu">⋮</button>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <div class="video-thumbnail">
+                    <span class="video-duration">3:50</span>
+                </div>
+                <div class="video-information">
+                    <div class="channel-avatar"></div>
+                    <div class="video-details">
+                        <h3>Avengers Doomsday Official Trailer 2026</h3>
+                        <p>GameGasm</p>
+                        <p>1M views · 6 days ago</p>
+                    </div>
+                    <button type="button" class="video-menu">⋮</button>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <div class="video-thumbnail">
+                    <span class="video-duration">9:44</span>
+                </div>
+                <div class="video-information">
+                    <div class="channel-avatar"></div>
+                    <div class="video-details">
+                        <h3>Japanese Lifestyle and Daily Life</h3>
+                        <p>Japanese Channel</p>
+                        <p>17M views · 4 years ago</p>
+                    </div>
+                    <button type="button" class="video-menu">⋮</button>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <div class="video-thumbnail">
+                    <span class="video-duration">15:20</span>
+                </div>
+                <div class="video-information">
+                    <div class="channel-avatar"></div>
+                    <div class="video-details">
+                        <h3>Beautiful Places Around the World</h3>
+                        <p>Travel World</p>
+                        <p>850K views · 2 weeks ago</p>
+                    </div>
+                    <button type="button" class="video-menu">⋮</button>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <div class="video-thumbnail">
+                    <span class="video-duration">22:10</span>
+                </div>
+                <div class="video-information">
+                    <div class="channel-avatar"></div>
+                    <div class="video-details">
+                        <h3>Best Gaming Moments and Highlights</h3>
+                        <p>Gaming Zone</p>
+                        <p>500K views · 3 days ago</p>
+                    </div>
+                    <button type="button" class="video-menu">⋮</button>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <div class="video-thumbnail">
+                    <span class="video-duration">8:30</span>
+                </div>
+                <div class="video-information">
+                    <div class="channel-avatar"></div>
+                    <div class="video-details">
+                        <h3>Top Music Hits and Popular Songs</h3>
+                        <p>Music World</p>
+                        <p>2M views · 5 days ago</p>
+                    </div>
+                    <button type="button" class="video-menu">⋮</button>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <div class="video-thumbnail">
+                    <span class="video-duration">19:25</span>
+                </div>
+                <div class="video-information">
+                    <div class="channel-avatar"></div>
+                    <div class="video-details">
+                        <h3>Complete Python Backend Development Roadmap</h3>
+                        <p>Code Academy</p>
+                        <p>300K views · 1 week ago</p>
+                    </div>
+                    <button type="button" class="video-menu">⋮</button>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <div class="video-thumbnail">
+                    <span class="video-duration">14:50</span>
+                </div>
+                <div class="video-information">
+                    <div class="channel-avatar"></div>
+                    <div class="video-details">
+                        <h3>How to Build a Django Web Application</h3>
+                        <p>Developer Channel</p>
+                        <p>450K views · 2 weeks ago</p>
+                    </div>
+                    <button type="button" class="video-menu">⋮</button>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <div class="video-thumbnail">
+                    <span class="video-duration">27:15</span>
+                </div>
+                <div class="video-information">
+                    <div class="channel-avatar"></div>
+                    <div class="video-details">
+                        <h3>Top 10 Amazing Places in Japan</h3>
+                        <p>Travel Japan</p>
+                        <p>2.5M views · 3 weeks ago</p>
+                    </div>
+                    <button type="button" class="video-menu">⋮</button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ================= SHORTS SECTION ================= -->
+
+    <section class="shorts-section">
+
+        <div class="shorts-heading">
+            <h2><span class="shorts-logo">▶</span> Shorts</h2>
+        </div>
+
+        <div class="shorts-grid">
+
+            <div class="short-card">
+                <div class="short-thumbnail">
+                    <span class="short-duration">0:24</span>
+                </div>
+                <div class="short-details">
+                    <h3>24 Hours Challenge Amazing Daily Life</h3>
+                    <p>1.5M views</p>
+                </div>
+            </div>
+
+            <div class="short-card">
+                <div class="short-thumbnail">
+                    <span class="short-duration">0:35</span>
+                </div>
+                <div class="short-details">
+                    <h3>Beautiful Japanese Lifestyle</h3>
+                    <p>850K views</p>
+                </div>
+            </div>
+
+            <div class="short-card">
+                <div class="short-thumbnail">
+                    <span class="short-duration">0:45</span>
+                </div>
+                <div class="short-details">
+                    <h3>Interesting Facts You Should Know</h3>
+                    <p>2.1M views</p>
+                </div>
+            </div>
+
+            <div class="short-card">
+                <div class="short-thumbnail">
+                    <span class="short-duration">0:18</span>
+                </div>
+                <div class="short-details">
+                    <h3>What Happens If You Try This?</h3>
+                    <p>450K views</p>
+                </div>
+            </div>
+
+            <div class="short-card">
+                <div class="short-thumbnail">
+                    <span class="short-duration">0:29</span>
+                </div>
+                <div class="short-details">
+                    <h3>Fashion and Style Shorts</h3>
+                    <p>900K views</p>
+                </div>
+            </div>
+
+            <div class="short-card">
+                <div class="short-thumbnail">
+                    <span class="short-duration">0:32</span>
+                </div>
+                <div class="short-details">
+                    <h3>Python Coding Tips in 30 Seconds</h3>
+                    <p>700K views</p>
+                </div>
+            </div>
+
+            <div class="short-card">
+                <div class="short-thumbnail">
+                    <span class="short-duration">0:41</span>
+                </div>
+                <div class="short-details">
+                    <h3>Beautiful Places in Tokyo</h3>
+                    <p>1.2M views</p>
+                </div>
+            </div>
+
+            <div class="short-card">
+                <div class="short-thumbnail">
+                    <span class="short-duration">0:20</span>
+                </div>
+                <div class="short-details">
+                    <h3>Gaming Best Moments</h3>
+                    <p>650K views</p>
+                </div>
+            </div>
+
+            <div class="short-card">
+                <div class="short-thumbnail">
+                    <span class="short-duration">0:55</span>
+                </div>
+                <div class="short-details">
+                    <h3>Learn Something New Today</h3>
+                    <p>2M views</p>
+                </div>
+            </div>
+
+            <div class="short-card">
+                <div class="short-thumbnail">
+                    <span class="short-duration">0:27</span>
+                </div>
+                <div class="short-details">
+                    <h3>Daily Life in Japan</h3>
+                    <p>980K views</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+</div>
+
 {% endblock %}
