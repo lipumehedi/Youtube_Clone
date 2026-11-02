@@ -1,0 +1,147 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #0f0f0f;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 220px;
+    height: 100vh;
+    padding: 25px 15px;
+    background: #0f0f0f;
+}
+
+.sidebar h3 {
+    margin-bottom: 30px;
+}
+
+.sidebar a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 12px;
+    border-radius: 8px;
+}
+
+.sidebar a:hover {
+    background: #272727;
+}
+
+.right-section {
+    margin-left: 220px;
+}
+
+.navbar {
+    height: 65px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 25px;
+    background: #0f0f0f;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 60%;
+    max-width: 650px;
+    margin-left: 60px;
+}
+
+.search-box {
+    display: flex;
+    flex: 1;
+    height: 40px;
+    border: 1px solid #303030;
+    border-radius: 25px;
+    overflow: hidden;
+}
+
+.search-box input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: white;
+    padding: 0 15px;
+}
+
+.search-button,
+.mic-button,
+.notification-button,
+.create-button {
+    background: #272727;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.search-button {
+    width: 65px;
+}
+
+.mic-button,
+.notification-button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.create-button {
+    padding: 10px 15px;
+    border-radius: 20px;
+}
+
+.profile {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: #6750a4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content {
+    padding: 20px 25px;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 70px;
+    }
+
+    .sidebar h3,
+    .sidebar a {
+        font-size: 11px;
+        padding: 10px 2px;
+    }
+
+    .right-section {
+        margin-left: 70px;
+    }
+
+    .search-container {
+        width: 65%;
+    }
+}
