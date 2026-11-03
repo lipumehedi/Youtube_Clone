@@ -4,7 +4,7 @@ A YouTube-inspired video-sharing web application built with Django, HTML, CSS, a
 
 Djangoを使用して、YouTubeを参考にした動画共有Webアプリケーションを開発する学習プロジェクトです。PythonとDjangoによるバックエンド開発の基礎を実践的に学んでいます。
 
-
+### Homepage
 
 The homepage features a dark theme inspired by YouTube, including sidebar navigation, a search bar, category filters, microphone and notification icons, and a video thumbnail grid.
 
