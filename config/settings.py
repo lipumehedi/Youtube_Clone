@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'shorts',
     'main',
     'home',
+    'video',
 ]
 
 MIDDLEWARE = [
