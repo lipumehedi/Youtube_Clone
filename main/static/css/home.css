@@ -52,6 +52,8 @@
     overflow-x: auto;
     padding-bottom: 10px;
     scrollbar-width: none;
+    flex-wrap: wrap;
+    overflow-x: visible;
 }
 
 .video-row::-webkit-scrollbar {
@@ -59,12 +61,13 @@
 }
 
 .video-card {
-    flex: 0 0 270px;
+    flex: 0 0 calc((100% - 32px) / 3);
     cursor: pointer;
 }
 
 .thumbnail {
     position: relative;
+    height:auto;
     width: 100%;
     aspect-ratio: 16 / 9;
     border-radius: 6px;
@@ -174,3 +177,12 @@
     border-radius: 6px;
     background-color: #272727;
 }
+
+.category-wrapper {
+    position: sticky;
+    top: 60px;
+    z-index: 100;
+    background-color: #0f0f0f;
+    padding: 10px 0;
+}
+
