@@ -13,7 +13,7 @@
     <!-- CATEGORY NAVIGATION -->
     <div class="category-wrapper">
         <div class="category-list">
-            {% for tag in tag_names %}
+            {% for tag in top_button_names %}
                 <button class="category-btn" type="button">{{ tag }}</button>
             {% endfor %}
         </div>
@@ -32,12 +32,22 @@
                     <img src="{{ video.thumbnail_url }}">
                 </div>
 
-                <div class="text-line title-line">
-                    <h3>{{ video.title }}</h3>
-                    <p>{{ video.channel.name }}</p>
-                </div>
+                <div class="video-info">
 
-                
+                    <div class="channel-avatar">
+                        {% if video.channel.logo %}
+                            <img src="{{ video.channel.logo }}" alt="{{ video.channel.name }}">
+                        {% else %}
+                            <span>{{ video.channel.name|first }}</span>
+                        {% endif %}
+                    </div>
+
+                    <div class="video-details">
+                        <h3>{{ video.title }}</h3>
+                        <p class="video-meta">{{ video.channel.name }} &nbsp; {{ video.views_count }} views &nbsp; {{ video.days_ago }} days ago</p>
+                    </div>
+
+                </div>
 
             </div>
             {% endfor %}
