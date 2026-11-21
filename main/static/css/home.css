@@ -60,7 +60,11 @@
 
 .video-card {
     flex: 0 0 calc((100% - 32px) / 3);
+    box-sizing: border-box;
+    padding: 10px;
+    border-radius: 12px;
     cursor: pointer;
+    transition: background-color 0.25s ease;
 }
 
 .thumbnail {
@@ -91,23 +95,74 @@
     z-index: 2;
 }
 
-/* ================= TEXT LINES ================= */
+/* ================= HOVER (YouTube style) ================= */
 
-.text-line {
-    margin-top: 10px;
+.video-card:hover {
+    background-color: #272727;
 }
 
-.title-line h3 {
+/* ================= VIDEO INFO ================= */
+
+.video-info {
+    display: flex;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.channel-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: #3d3d3d;
+    flex-shrink: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.channel-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.channel-avatar span {
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.video-details {
+    flex: 1;
+    min-width: 0;
+}
+
+.video-details h3 {
     color: #fff;
     font-size: 15px;
     margin: 0 0 4px 0;
     line-height: 1.4;
 }
 
-.title-line p {
+.channel-name {
     color: #aaa;
     font-size: 13px;
     margin: 0;
+}
+
+.video-meta {
+    color: #aaa;
+    font-size: 13px;
+    margin: 0;
+}
+
+/* ================= TEXT LINES ================= */
+
+.text-line {
+    margin-top: 10px;
 }
 
 .short-line,
@@ -180,4 +235,3 @@
     object-fit: cover;
     display: block;
 }
-
