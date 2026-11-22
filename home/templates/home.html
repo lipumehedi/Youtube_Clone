@@ -19,12 +19,12 @@
         </div>
     </div>
 
-    <!-- VIDEOS SECTION -->
+    <!-- VIDEOS — FIRST ROW -->
     <section class="content-section">
 
         <div class="video-row">
 
-            {% for video in videos %}
+            {% for video in videos|slice:":6" %}
             <div class="video-card">
 
                 <div class="thumbnail">
@@ -43,7 +43,7 @@
                     </div>
 
                     <div class="video-details">
-                        <h3>{{ video.title }}</h3>
+                        <h3 class="video-title" title="{{ video.title }}">{{ video.title }}</h3>
                         <p class="video-meta">{{ video.channel.name }} &nbsp; {{ video.views_count }} views &nbsp; {{ video.days_ago }} days ago</p>
                     </div>
 
@@ -60,18 +60,60 @@
     <section class="shorts-section">
 
         <div class="shorts-heading">
-            <span class="shorts-icon">▶</span>
+            <svg class="shorts-icon" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+                <path fill="#ff0000" fill-rule="evenodd" d="m18.931 9.99l-1.441-.601l1.717-.913a4.48 4.48 0 0 0 1.874-6.078a4.506 4.506 0 0 0-6.09-1.874L4.792 5.929a4.5 4.5 0 0 0-2.402 4.193a4.52 4.52 0 0 0 2.666 3.904c.036.012 1.442.6 1.442.6l-1.706.901a4.51 4.51 0 0 0-2.369 3.967A4.53 4.53 0 0 0 6.93 24c.725 0 1.437-.174 2.08-.508l10.21-5.406a4.49 4.49 0 0 0 2.39-4.192a4.53 4.53 0 0 0-2.678-3.904Zm-9.334 5.2V8.824l6.007 3.184z"/>
+                <path fill="#fff" d="M9.597 15.19V8.824l6.007 3.184z"/>
+            </svg>
             <h2>Shorts</h2>
         </div>
 
         <div class="shorts-grid">
+            {% for video in shorts|slice:":5"%}
+            <a href="#" class="short-card">
+                <div class="short-thumbnail">
+                    <img src="{{ video.thumbnail_url }}" alt="{{ video.title }}">
+                </div>
+                <div class="short-info">
+                    <p class="short-title" title="{{ video.title }}">{{ video.title }}</p>
+                    <p class="short-views">{{ video.views_count }} views</p>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
 
-            {% for i in "123456" %}
-            <article class="short-card">
-                <div class="short-thumbnail"></div>
-                <div class="text-line short-line"></div>
-                <div class="text-line small-line"></div>
-            </article>
+    </section>
+
+    <!-- VIDEOS — REST -->
+    <section class="content-section">
+
+        <div class="video-row">
+
+            {% for video in videos|slice:"6:" %}
+            <div class="video-card">
+
+                <div class="thumbnail">
+                    <span class="duration">10:25</span>
+                    <img src="{{ video.thumbnail_url }}">
+                </div>
+
+                <div class="video-info">
+
+                    <div class="channel-avatar">
+                        {% if video.channel.logo %}
+                            <img src="{{ video.channel.logo }}" alt="{{ video.channel.name }}">
+                        {% else %}
+                            <span>{{ video.channel.name|first }}</span>
+                        {% endif %}
+                    </div>
+
+                    <div class="video-details">
+                        <h3 class="video-title" title="{{ video.title }}">{{ video.title }}</h3>
+                        <p class="video-meta">{{ video.channel.name }} &nbsp; {{ video.views_count }} views &nbsp; {{ video.days_ago }} days ago</p>
+                    </div>
+
+                </div>
+
+            </div>
             {% endfor %}
 
         </div>
