@@ -9,13 +9,14 @@ from video.models import VideoContent
 class HomeView(View):
     def get(self, request):
         tag_names = TagTitles.objects.filter(title__icontains='a')
-        videos = VideoContent.objects.filter().order_by('-created_at')
+        videos = VideoContent.objects.filter(video_type=VideoContent.VideoTypeChoices.GENERAL_VIDEO).order_by('-created_at')
 
         for video in videos:
             video.days_ago = max(0, (timezone.now() - video.created_at).days)
 
-
+        shorts = VideoContent.objects.filter(video_type=VideoContent.VideoTypeChoices.SHORT_VIDEO).order_by('-created_at')
         return render(request, 'home.html', {
             'top_button_names': tag_names,
             'videos': videos,
+            'shorts': shorts,
         })
