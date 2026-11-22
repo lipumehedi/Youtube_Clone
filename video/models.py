@@ -15,12 +15,16 @@ class Channel(models.Model):
         return self.name
     
 class VideoContent(models.Model):
+    class VideoTypeChoices(models.TextChoices):
+        GENERAL_VIDEO = 'general_video', 'General Video'
+        SHORT_VIDEO = 'short_video', 'Short Video'
     title = models.CharField(max_length=255)
     thumbnail_url = models.URLField()
     channel = models.ForeignKey(Channel, on_delete=models.CASCADE)
     views_count = models.IntegerField(default=0)
     uploaded_at = models.DateTimeField(auto_now_add=True)
-    
+    video_type = models.CharField(max_length=255, choices=VideoTypeChoices.choices, default=VideoTypeChoices.GENERAL_VIDEO)
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
